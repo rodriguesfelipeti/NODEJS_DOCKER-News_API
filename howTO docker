@@ -1,0 +1,62 @@
+Comandos Docker: 
+Imagem mongoDB docker
+    docker run -d -p 27017:27017 -p 28017:28017 -e AUTH=no tutum/mongodb
+
+docker ps - verifica tempo de execução da imagem ativa
+docker ps -a list todas as imagens no sistema
+docker stop {id} - para execução da imagen
+docker start {id} - inica execucao da imagem
+
+
+Instalar @types
+    @types/node @types/body-parser @types/express @types/http-status --save-dev
+
+Criar arquivo tsconfig.json
+
+    {
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "outDir": "dist",
+        "typeRoots": [
+            "../node_modules/@types"
+        ],
+        "types": [
+            "node"
+        ]
+    },
+    "include": [        
+        "**/*.ts",
+        "*.ts",
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "buildOnSave": true,
+    "compileOnSave": true
+}
+
+Create DockerFile
+    docker build -t {nome do projeto} .
+
+Run image
+    docker run -d -p 5000:3000 {nome do projeto}
+
+Create docker-compose.yml
+    version: "3"
+    services:
+    api_dev:
+        image: tadrianonet/api-ts
+        ports:
+        - "5000:3050"
+        links:
+        - link-db
+    link-db:
+        image: tutum/mongodb
+        ports:
+        - "27017:27017"
+        - "28017:28017"
+        environment:
+        - AUTH=no
+
+docker-compose-up (sobe a aplicação)

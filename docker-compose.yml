@@ -1,0 +1,31 @@
+# version: "3"
+# services:
+#   api:
+#     image: rodriguesfelipe/dockerapi-ts
+#     ports:
+#       - "5000:3000"
+#     links:
+#       - link-db
+#   link-db:
+#     image: tutum/mongodb
+#     ports:
+#       - "27017:27017"
+#       - "28017:28017"
+#     environment:
+#       - AUTH=no
+
+version: "3"
+services:
+  api:
+    image: rodriguesfelipe/dockerapi-ts
+    ports:
+      - "80:3050"
+    links:
+      - link-db
+  link-db:
+    image: tutum/mongodb
+    ports:
+      - "27017:27017"
+      - "28017:28017"
+    environment:
+      - AUTH=no
